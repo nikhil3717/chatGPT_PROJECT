@@ -26,7 +26,7 @@ const Register = () => {
 
 
 
-    axios.post("http://localhost:3000/api/auth/register", {
+    axios.post("https://chatgpt-project-1-89j2.onrender.com/api/auth/register", {
       fullName:{
         firstName:form.firstName,
          lastName:form.lastName

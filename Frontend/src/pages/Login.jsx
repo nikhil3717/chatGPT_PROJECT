@@ -24,7 +24,7 @@ function handelChange(e) {
 
     axios
       .post(
-        "http://localhost:3000/api/auth/login",
+        "https://chatgpt-project-1-89j2.onrender.com/api/auth/login",
         {
           email: form.email,
           password: form.password,

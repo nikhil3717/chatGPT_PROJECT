@@ -52,7 +52,7 @@ const Home = () => {
   // Fetch chats from server
   const fetchChats = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/chat", {
+      const response = await axios.get("https://chatgpt-project-1-89j2.onrender.com/api/chat", {
         withCredentials: true
       });
       console.log("Fetched chats:", response.data);
@@ -86,7 +86,7 @@ const Home = () => {
     const title = newChatTitle.trim() || "New Chat";
 
     try {
-      let response = await axios.post("http://localhost:3000/api/chat", {
+      let response = await axios.post("https://chatgpt-project-1-89j2.onrender.com/api/chat", {
         title: title
       }, {
         withCredentials: true
@@ -121,7 +121,7 @@ const Home = () => {
   const getMessages = async (chatId) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3000/api/chat/messages/${chatId}`,
+        `https://chatgpt-project-1-89j2.onrender.com/api/chat/messages/${chatId}`,
         { withCredentials: true }
       );
 
@@ -160,7 +160,7 @@ const Home = () => {
 
   // Initialize socket connection separately
   useEffect(() => {
-    let tempSocket = io("http://localhost:3000", {
+    let tempSocket = io("https://chatgpt-project-1-89j2.onrender.com", {
       withCredentials: true,
     });
 
