@@ -1,4 +1,6 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/chatSidebar.css";
 
 const ChatSidebar = ({
@@ -9,6 +11,41 @@ const ChatSidebar = ({
   isOpen,
   onClose,
 }) => {
+  const [user, setUser] = React.useState(null);
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    let mounted = true;
+    const checkAuth = async () => {
+      try {
+        const res = await axios.get(
+          "https://chatgpt-project-1-89j2.onrender.com/api/auth/me",
+          { withCredentials: true }
+        );
+        if (mounted) setUser(res.data.user);
+      } catch (err) {
+        if (mounted) setUser(null);
+      }
+    };
+    checkAuth();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await axios.post(
+        "https://chatgpt-project-1-89j2.onrender.com/api/auth/logout",
+        {},
+        { withCredentials: true }
+      );
+      setUser(null);
+      navigate("/login");
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <>
       <aside
@@ -78,10 +115,10 @@ const ChatSidebar = ({
 
         <div className="sidebar-footer">
           <div className="user-profile">
-            <div className="user-avatar">G</div>
+            <div className="user-avatar">{user ? user.firstName?.[0] ?? "U" : "G"}</div>
             <div className="user-info">
-              <div className="user-name">Nikhil Bca1835</div>
-              <div className="user-status">Go</div>
+              <div className="user-name">{user ? `${user.firstName} ${user.lastName}` : "Guest"}</div>
+              <div className="user-status">{user ? "Online" : "Not signed in"}</div>
             </div>
             <svg
               width="16"
@@ -99,6 +136,15 @@ const ChatSidebar = ({
               />
             </svg>
           </div>
+          {user ? (
+            <button className="auth-button logout-button" onClick={handleLogout}>
+              Logout
+            </button>
+          ) : (
+            <Link to="/login" className="auth-button login-button">
+              Login
+            </Link>
+          )}
         </div>
       </aside>
       {isOpen && (

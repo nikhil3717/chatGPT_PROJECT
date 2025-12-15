@@ -203,6 +203,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -262,6 +263,47 @@
 
 .user-profile .chevron-down {
   flex-shrink: 0;
+}
+
+.auth-button {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--border);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.12s ease, color 0.12s ease;
+  cursor: pointer;
+}
+
+.auth-button:hover {
+  background: var(--bg);
+  color: var(--primary);
+}
+
+.login-button {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--border);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.login-button:hover {
+  background: var(--bg);
+  color: var(--primary);
 }
 
 @media (min-width: 900px) {
