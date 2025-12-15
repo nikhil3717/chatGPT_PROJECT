@@ -25,7 +25,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/chat", chatRoutes);
 
 
-app.length("*name", (req,res) => {
+app.get("*name", (req,res) => {
   res.sendFile(path.join(_dirname,"../public/index.html"))
 })
 
