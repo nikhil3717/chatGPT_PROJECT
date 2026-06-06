@@ -28,6 +28,7 @@ import {
 
 import axios from "axios";
 import { io } from "socket.io-client";
+import { API_BASE_URL } from "../config/api";
 const Home = () => {
   const dispatch = useDispatch();
 
@@ -52,7 +53,7 @@ const Home = () => {
   // Fetch chats from server
   const fetchChats = async () => {
     try {
-      const response = await axios.get("https://chatgpt-project-1-89j2.onrender.com/api/chat", {
+      const response = await axios.get(`${API_BASE_URL}/api/chat`, {
         withCredentials: true
       });
       console.log("Fetched chats:", response.data);
@@ -86,7 +87,7 @@ const Home = () => {
     const title = newChatTitle.trim() || "New Chat";
 
     try {
-      let response = await axios.post("https://chatgpt-project-1-89j2.onrender.com/api/chat", {
+      let response = await axios.post(`${API_BASE_URL}/api/chat`, {
         title: title
       }, {
         withCredentials: true
@@ -121,7 +122,7 @@ const Home = () => {
   const getMessages = async (chatId) => {
     try {
       const { data } = await axios.get(
-        `https://chatgpt-project-1-89j2.onrender.com/api/chat/messages/${chatId}`,
+        `${API_BASE_URL}/api/chat/messages/${chatId}`,
         { withCredentials: true }
       );
 
@@ -160,7 +161,7 @@ const Home = () => {
 
   // Initialize socket connection separately
   useEffect(() => {
-    let tempSocket = io("https://chatgpt-project-1-89j2.onrender.com", {
+    let tempSocket = io(API_BASE_URL, {
       withCredentials: true,
     });
 

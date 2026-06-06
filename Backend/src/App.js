@@ -1,6 +1,7 @@
 
 const express = require("express");
 const cookieParser = require("cookie-parser");
+
 /* routers */
 const authRoutes = require("./routes/userAuth.routes");
 const chatRoutes = require("./routes/chat.routes")
@@ -21,6 +22,14 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, "../public")))
 
 /* use routes */
+app.get("/api/health", (req, res) => {
+  const mongoose = require("mongoose");
+  res.json({
+    ok: mongoose.connection.readyState === 1,
+    db: ["disconnected", "connected", "connecting", "disconnecting"][mongoose.connection.readyState] || "unknown",
+  });
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/chat", chatRoutes);
 

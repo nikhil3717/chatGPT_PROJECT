@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from "../config/api";
 
 const Login = () => {
 
@@ -24,7 +25,7 @@ function handelChange(e) {
 
     axios
       .post(
-        "https://chatgpt-project-1-89j2.onrender.com/api/auth/login",
+        `${API_BASE_URL}/api/auth/login`,
         {
           email: form.email,
           password: form.password,

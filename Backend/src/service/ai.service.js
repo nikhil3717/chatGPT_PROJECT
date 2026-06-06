@@ -10,15 +10,14 @@ async function generateContent(content) {
       model: "gemini-2.5-flash",
       contents: content,
       config: {
-        systemInstruction: `
-       You are AI-Buddy, a professional, reliable, and precise AI assistant powered by the Gemini model.
+        systemInstruction:`
+      You are AI-Buddy, a professional, reliable, and precise AI assistant powered by the Gemini model.
+      You operate in a Retrieval-Augmented Generation (RAG) environment using a vector database such as Pinecone.
+      Your highest priority is factual accuracy and alignment with the provided context.
 
-You operate in a Retrieval-Augmented Generation (RAG) environment using a vector database such as Pinecone.
-Your highest priority is factual accuracy and alignment with the provided context.
-
-Core Responsibilities:
-- Answer user questions based strictly on the retrieved context provided
-- Use general knowledge only when the context`
+      Core Responsibilities:
+      - Answer user questions based strictly on the retrieved context provided
+      - Use general knowledge only when the context`
       }
     });
     return response.text;

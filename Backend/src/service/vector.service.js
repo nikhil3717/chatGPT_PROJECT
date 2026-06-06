@@ -33,8 +33,8 @@ async function queryMemory({ queryVector, limit = 5, metadata }) {
     });
     return data.matches;
   } catch (error) {
-    console.error("Error querying memory from Pinecone:", error.message);
-    // Return empty array as fallback if Pinecone is unavailable
+  console.error("Error querying memory from Pinecone:", error.message);
+  // Return empty array as fallback if Pinecone is unavailable
     return [];
   }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from "../config/api";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -25,8 +26,7 @@ const Register = () => {
     console.log(form.firstName);
 
 
-
-    axios.post("https://chatgpt-project-1-89j2.onrender.com/api/auth/register", {
+    axios.post(`${API_BASE_URL}/api/auth/register`, {
       fullName:{
         firstName:form.firstName,
          lastName:form.lastName
@@ -41,6 +41,11 @@ const Register = () => {
         navigate("/");
       })
       .catch((error) => {
+        const message =
+          error.response?.data?.message ||
+          error.response?.data?.error ||
+          "Registration failed. Please try again.";
+        alert(message);
         console.log(error);
       });
   };

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from "../config/api";
 import "../styles/chatSidebar.css";
 
 const ChatSidebar = ({
@@ -19,7 +20,7 @@ const ChatSidebar = ({
     const checkAuth = async () => {
       try {
         const res = await axios.get(
-          "https://chatgpt-project-1-89j2.onrender.com/api/auth/me",
+          `${API_BASE_URL}/api/auth/me`,
           { withCredentials: true }
         );
         if (mounted) setUser(res.data.user);
@@ -36,7 +37,7 @@ const ChatSidebar = ({
   const handleLogout = async () => {
     try {
       await axios.post(
-        "https://chatgpt-project-1-89j2.onrender.com/api/auth/logout",
+        `${API_BASE_URL}/api/auth/logout`,
         {},
         { withCredentials: true }
       );

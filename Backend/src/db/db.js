@@ -1,13 +1,17 @@
 const mongoose = require("mongoose");
 
+async function connectDB() {
+  if (!process.env.MONGO_URL) {
+    console.error("MONGO_URL is not set in environment variables");
+    return;
+  }
 
-async function connectDB () {
-   try {  
+  try {
     await mongoose.connect(process.env.MONGO_URL);
-    console.log("Connected to MongoDB")
-   } catch (error) {
-    console.log(error)
-   }
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.error("MongoDB connection failed:", error.message);
+  }
 }
 
-module.exports = connectDB
+module.exports = connectDB;
